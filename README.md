@@ -34,33 +34,31 @@ First check if java is installed
 java -version
 ```
 
-if an error occured, check the install.md file
+if an error occured, check the `install.md` file
 
 Now that we have the JDK (Java Development Kit; required only for development, coding) and JRE (Java Runtime Environment; required to run Java code and applications) installed, we can now start programming in java.
 
 ## Basics of java 
-
-(Main class, compiling and runnning Java code)
 
 First, we will learn how to write a simple java program;
 To create a simple Java program, you need to create a class that contains the main method.
 
 ### Step 1 : Creating a program
 
-Create a file named **SimpleApp.java** and add a Java class that contains the main function.
+Create a file named `SimpleApp.java` and add a Java class that contains the main function.
 Make it so the main function prints "Hello World!" on the standard output.
 
-By convention, the main function is **public static** and takes a **String args[]** as its argument.
-You can make it so it returns *void* or an *int*
+By convention, the main function is `public static` and takes a `String args[]` as its argument.
+You can make it so it returns `void` or an `int`
 
-The *println* function is contained inside *System.out* class
+The `println` function is contained inside `System.out` class
 
 
 ### Step 2 : Compiling and running the program
 
 Now that we have created a .java file with a class that contains a main function, we can now compile and run it.
 
-To compile a java program we can use the *javac* command (The c in javac means "compiler").
+To compile a java program we can use the `javac` command (The c in javac means "compiler").
 
 ```bash
 javac SimpleApp.java
@@ -72,13 +70,13 @@ We can also use the wildcard symbol to get all the files in a directory
 javac *.java
 ```
 
-By doing this, a "SimpleApp.class" file has been generated.
+By doing this, a `SimpleApp.class` file has been generated.
 Basically, this file contains all the data of the original file as well as the compiled code in machine language.
 It's an equivalent to .o or .obj file in C/C++
 
 (*Java is a heavily object oriented language, so it is expected from an application to contain multiple .class files containing a single class.*)
 
-To run the program we can use the *java* command followed by a class containing a main function.
+To run the program we can use the `java` command followed by a class containing a main function.
 
 ```bash
 java SimpleApp
@@ -98,11 +96,11 @@ The expected output should be :
 Hello World!!
 ```
 
-## Advanced concepts of java
-
-...
-
 ## Application in java
 
-...
+Now that you know how to run a java program we will now create a desktop application using the JavaFX library.
+The prerequisites for creating this application are `maven` and `IntelliJ Idea IDE`.
+If you do not have theses, check the `install.md` file.
+
+
 
