@@ -96,11 +96,97 @@ The expected output should be :
 Hello World!!
 ```
 
-## Application in java
+## Simple Application in java
 
 Now that you know how to run a java program we will now create a desktop application using the JavaFX library.
 The prerequisites for creating this application are `maven` and `IntelliJ Idea IDE`.
 If you do not have theses, check the `install.md` file.
 
+Create a new maven project by using the following command :
+
+```bash
+mvn archetype:generate -DgroupId=com.WorskshopJava.app -DartifactId=WorkshopJava-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+```
+
+Under this directory you will notice the following *standard project structure*.
+
+```text
+WorkshopJava-app
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- WorkshopJava
+    |               `-- app
+    |                   `-- App.java
+    `-- test
+        `-- java
+            `-- com
+                `-- WorkshopJava
+                    `-- app
+                        `-- AppTest.java
+```
+
+The `src/main/java` directory contains the project source code, the `src/test/java` directory contains the test source, and the `pom.xml` file is the project's Project Object Model, or POM.
+
+The `pom.xml` file is the core of a project's configuration in Maven.
+It is a single configuration file that contains the majority of information required to build a project in just the way you want.
+The POM is huge and can be daunting in its complexity, but it is not necessary to understand all of the intricacies just yet to use it effectively.
+
+### What did you do?
+
+You executed the Maven goal `archetype:generate`, and passed in various parameters to that goal. The prefix `archetype` is the plugin that provides the goal.
+This `archetype:generate` goal created a simple project based upon a `maven-archetype-quickstart` archetype.
+Suffice it to say for now that a plugin is a collection of goals with a general common purpose. For example the jboss-maven-plugin, whose purpose is "deal with various jboss items".
 
 
+### Before starting coding
+
+Just to make sure that everything is working fine, go in your project directory (Where the pom.xml is located) and run this command
+
+```bash
+mvn compile
+```
+This command will (as you've guessed) compile the project based on the infos in the `pom.xml` file.
+The outpur program is find by default in the `/target/` directory.
+If there is an error during compilation, call the Workshop guy.
+
+```bash
+mvn package
+```
+This command will created a `.jar` file (an executable java file)
+
+
+Add this line to the properties tag to make it easier to execute your project once it is compiled
+
+```xml
+<exec.mainClass>com.WorkshopJava.app.App</exec.mainClass>
+```
+
+Now your properties tab should look like this
+
+```xml
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <exec.mainClass>com.WorkshopJava.app.App</exec.mainClass>
+</properties>
+```
+in fact... it does'nt work...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Go further with JavaFX
