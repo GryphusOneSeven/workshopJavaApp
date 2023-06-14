@@ -102,11 +102,8 @@ Now that you know how to run a java program we will now create a desktop applica
 The prerequisites for creating this application are `maven` and `IntelliJ Idea IDE`.
 If you do not have theses, check the `install.md` file.
 
-Create a new maven project by using the following command :
 
-```bash
-mvn archetype:generate -DgroupId=com.WorskshopJava.app -DartifactId=WorkshopJava-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-```
+### IntelliJ IDE
 
 Under this directory you will notice the following *standard project structure*.
 
@@ -116,16 +113,8 @@ WorkshopJava-app
 `-- src
     |-- main
     |   `-- java
-    |       `-- com
-    |           `-- WorkshopJava
-    |               `-- app
-    |                   `-- App.java
     `-- test
         `-- java
-            `-- com
-                `-- WorkshopJava
-                    `-- app
-                        `-- AppTest.java
 ```
 
 The `src/main/java` directory contains the project source code, the `src/test/java` directory contains the test source, and the `pom.xml` file is the project's Project Object Model, or POM.
@@ -134,12 +123,33 @@ The `pom.xml` file is the core of a project's configuration in Maven.
 It is a single configuration file that contains the majority of information required to build a project in just the way you want.
 The POM is huge and can be daunting in its complexity, but it is not necessary to understand all of the intricacies just yet to use it effectively.
 
-### What did you do?
+Add theses lines to your `pom.xml` to load FXGL
 
-You executed the Maven goal `archetype:generate`, and passed in various parameters to that goal. The prefix `archetype` is the plugin that provides the goal.
-This `archetype:generate` goal created a simple project based upon a `maven-archetype-quickstart` archetype.
-Suffice it to say for now that a plugin is a collection of goals with a general common purpose. For example the jboss-maven-plugin, whose purpose is "deal with various jboss items".
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>com.github.almasb</groupId>
+            <artifactId>fxgl</artifactId>
+            <version>17.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+Create a `App.java` file in src/
 
 ### Before starting coding
 
@@ -155,38 +165,75 @@ If there is an error during compilation, call the Workshop guy.
 ```bash
 mvn package
 ```
-This command will created a `.jar` file (an executable java file)
+This command will create a `.jar` file (an executable java file)
 
+From now on, you can use IntelliJ idea IDE to make it easier to run your java program.
 
-Add this line to the properties tag to make it easier to execute your project once it is compiled
-
-```xml
-<exec.mainClass>com.WorkshopJava.app.App</exec.mainClass>
+```bash
+intellij-idea-community .
 ```
 
-Now your properties tab should look like this
+### Setup JavaFX environment
+
+Downlaod JavaFX : https://gluonhq.com/products/javafx/
+
+Extract it.
+
+Add an environment variable pointing to the lib directory of the runtime: 
+
+export PATH_TO_FX=path/to/javafx-sdk-20/lib
+
+javac --module-path $PATH_TO_FX --add-modules javafx.controls HelloFX.java
+
+### Creating a Java Application using JavaFX
+
+JavaFX is a Java library used to develop Desktop applications as well as Rich Internet Applications (RIA).
+The applications built in JavaFX, can run on multiple platforms including Web, Mobile and Desktops.
+(*Learn more abour JavaFX : https://openjfx.io/*)
+
+
+#### Step 1
+
+Add JavaFX dependencies to the `pom.xml`
 
 ```xml
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-    <exec.mainClass>com.WorkshopJava.app.App</exec.mainClass>
-</properties>
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>12.0.2</version>
+</dependency>
 ```
-in fact... it does'nt work...
+Then, add the plugin
 
+```xml
+<plugin>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-maven-plugin</artifactId>
+    <version>0.0.8</version>
+    <configuration>
+        <mainClass>hellofx/org.openjfx.App</mainClass>
+    </configuration>
+</plugin>
+```
 
+In the App.java file, add the following line to import JavaFX application class :
 
+```java
+import javafx.application.Application;
+```
 
+Make the `App` class inherit from `Application`
 
+In Java, we use the `entends` keyword to make a class inherit from another class.
 
+Then, override the `start` method. This method take a `Stage` class as arguments. Call it `primaryStage`.
 
+In Java, we use the `@Override` keyword to override an inherited method.
 
-
-
-
-
+```java
+    @Override
+    public void Do_something(int nb) { ... }
+```
 
 
 ## Go further with JavaFX

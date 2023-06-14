@@ -47,7 +47,8 @@ After the install, it should appear in your application list.
 
 ## maven installation
 Apache Maven is a software project management and comprehension tool.
-Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information. 
+Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information.
+You can think of Maven as a CMake tool but for java projects.
 
 Use the following command to install maven :
 
