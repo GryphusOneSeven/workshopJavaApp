@@ -149,11 +149,35 @@ Add theses lines to your `pom.xml` to load FXGL
     </build>
 ```
 
-Create a `App.java` file in src/
+### Creating a Java Application using FXGL
 
-### Before starting coding
+FXGL is a JavaFX Game Development Framework
 
-Just to make sure that everything is working fine, go in your project directory (Where the pom.xml is located) and run this command
+*(Learn more about it : https://github.com/AlmasB/FXGL)*
+
+
+#### Step 1 Create the application
+
+**In the App.java file, add the following line to import FXGL application class :**
+
+```java
+import com.almasb.fxgl.app.GameApplication;
+```
+
+**Make the `App` class inherit from `GameApplication`**
+
+In Java, we use the `entends` keyword to make a class inherit from another class.
+
+**Then, override the `initSettings` method. This method take a `GameSettings` class as arguments.**
+
+In Java, we use the `@Override` keyword to override an inherited method.
+
+```java
+    @Override
+    public void Do_something(int nb) { ... }
+```
+
+Now we can launch the application :
 
 ```bash
 mvn compile
@@ -167,73 +191,110 @@ mvn package
 ```
 This command will create a `.jar` file (an executable java file)
 
-From now on, you can use IntelliJ idea IDE to make it easier to run your java program.
+Or you can simply run your program from IntelliJ Idea IDE.
 
-```bash
-intellij-idea-community .
-```
+#### Step 2 Adding an entity
 
-### Setup JavaFX environment
+In `Init settings` set the width to 800, the height to 600 and the title to `WorkshopJava`
 
-Downlaod JavaFX : https://gluonhq.com/products/javafx/
+In your App class, add an `Entity` named `player`;
 
-Extract it.
+**Override the `initGame` method and use it to assign a value to your `player` entity.**
 
-Add an environment variable pointing to the lib directory of the runtime: 
+*InitGame is where you set up all the stuff that needs to be ready before the game starts.*
 
-export PATH_TO_FX=path/to/javafx-sdk-20/lib
-
-javac --module-path $PATH_TO_FX --add-modules javafx.controls HelloFX.java
-
-### Creating a Java Application using JavaFX
-
-JavaFX is a Java library used to develop Desktop applications as well as Rich Internet Applications (RIA).
-The applications built in JavaFX, can run on multiple platforms including Web, Mobile and Desktops.
-(*Learn more abour JavaFX : https://openjfx.io/*)
-
-
-#### Step 1
-
-Add JavaFX dependencies to the `pom.xml`
-
-```xml
-<dependency>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx-controls</artifactId>
-    <version>12.0.2</version>
-</dependency>
-```
-Then, add the plugin
-
-```xml
-<plugin>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx-maven-plugin</artifactId>
-    <version>0.0.8</version>
-    <configuration>
-        <mainClass>hellofx/org.openjfx.App</mainClass>
-    </configuration>
-</plugin>
-```
-
-In the App.java file, add the following line to import JavaFX application class :
+we can use the `FXGL.entitybuilder` function to create an entity
 
 ```java
-import javafx.application.Application;
+FXGL.entityBuilder()
+    .at(pos_x, pos_y)
+    .view(new Rectangle(25, 25, Color.BLUE))
+    .buildAndAttach();
 ```
 
-Make the `App` class inherit from `Application`
+`buildAndAttach` is for creating and adding entities to a scene.
 
-In Java, we use the `entends` keyword to make a class inherit from another class.
+Now if we run our program we can see our entity as a blue rectangle.
 
-Then, override the `start` method. This method take a `Stage` class as arguments. Call it `primaryStage`.
+#### Step 3 Adding inputs
 
-In Java, we use the `@Override` keyword to override an inherited method.
+To add input we must override the `initOutput` method
+
+To add an input, we can use the `FXGL.onKeyDown` method
 
 ```java
-    @Override
-    public void Do_something(int nb) { ... }
+FXGL.onKeyDown(KeyCode.SPACE, () -> {
+    Do_something();
+});
 ```
 
+**Add inputs so that your player can move in all four directions.**
 
-## Go further with JavaFX
+
+#### Step 4 Adding an ennemy entity
+
+Now that we have a player, we also need an enemy.
+
+**Add an ennemy entity with a red rectangle**
+
+#### Step 4.1 Adding a factory (Optional)
+
+To create multiple enemies, we can create a factory.
+
+**Create a new java class named `Factory` that implements the `EntityFactory` interface**
+
+In this class, add a `newEnemy` method that takes `Spawndata` as parameters and returns an `Entity`.
+
+Add `@Spawns("enemy")` to make it easier to create an entity.
+
+replace `buildAndAttach` by `build` or else the entity won't show when we spawn it.
+
+```java
+    @Spawns("enemy")
+    public Entity newEnemy(SpawnData data) {
+
+        return FXGL.entityBuilder(data)
+                .view("...")
+                .build();
+    }
+```
+
+Now, to actually spawn an enemy, we can use the `FXGL.spawn()` method.
+Give it `"enemy"` as first argument and his `x` and `y` pos for second and third args.
+
+
+#### Step 5 Add a UI
+
+**Now, override the `InitUI` method and add a new `Text` element.**
+
+We can use the `FXGL.getGameScene().addUINode()` method to add the text to the scene.
+
+You can use the member methods `setTranslateX()` and `setTranslateY()` to move the position of the text.
+
+
+#### Step 6 Add game variables
+
+**Now, override the `initGameVars` method**
+
+```java
+@Override
+protected void initGameVars(Map<String, Object> vars) {
+    vars.put("pixelsMoved", 0);
+}
+```
+
+Now, you can update the inputs so it calls the `FXGL.inc()` method with the name of your game variable as first arg and a value to increment as second argument (*+1* for example).
+
+
+In the initUI method, add this line to bind your game variable with the text :
+
+```java
+textPixels.textProperty().bind(FXGL.getWorldProperties().intProperty("pixelsMoved").asString());
+```
+
+`textPixels` being the name of your Text variable
+
+Now you have the base to create your own game application with FXGL.
+
+Feel free to customize your application or even check other features of FXGL at https://github.com/AlmasB/FXGL/wiki/FXGL-11 !
+
