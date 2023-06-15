@@ -102,9 +102,6 @@ Now that you know how to run a java program we will now create a desktop applica
 The prerequisites for creating this application are `maven` and `IntelliJ Idea IDE`.
 If you do not have theses, check the `install.md` file.
 
-
-### IntelliJ IDE
-
 Under this directory you will notice the following *standard project structure*.
 
 ```text
@@ -298,3 +295,11 @@ Now you have the base to create your own game application with FXGL.
 
 Feel free to customize your application or even check other features of FXGL at https://github.com/AlmasB/FXGL/wiki/FXGL-11 !
 
+You can use try to learn some useful features like :
+
+1. Adding texture to an entity
+2. Adding components to an entity
+3. Adding collisions between entities
+4. Adding multiple game scenes
+
+and much more !
