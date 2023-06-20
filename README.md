@@ -291,19 +291,6 @@ textPixels.textProperty().bind(FXGL.getWorldProperties().intProperty("pixelsMove
 
 `textPixels` being the name of your Text variable
 
-Now you have the base to create your own game application with FXGL.
-
-Feel free to customize your application or even check other features of FXGL at https://github.com/AlmasB/FXGL/wiki/FXGL-11 !
-
-You can use try to learn some useful features like :
-
-1. Adding texture to an entity
-2. Adding components to an entity
-3. Adding collisions between entities
-4. Adding multiple game scenes
-
-and much more !
-
 #### Step 7 Adding some textures
 
 Using rectangles to represent entities is fun, but it's better when they have different textures to differentiate them easier.
@@ -364,8 +351,10 @@ onCollisionBegin(EntityType.BOSS, EntityType.BASE, (boss2, base13) -> {
 
 ### To go even further
 
-That's basically it for tis workshop. I mean... Yeah, here's the link to the FXGL Documentation if you want to do even more things.
+Now you have the basics to create your own game application with FXGL.
 
-https://github.com/AlmasB/FXGL/wiki/FXGL-11
+That's basically it for this workshop. I mean... Yeah...
+
+Feel free to customize your application or even check other features of FXGL at https://github.com/AlmasB/FXGL/wiki/FXGL-11 !
 
 
