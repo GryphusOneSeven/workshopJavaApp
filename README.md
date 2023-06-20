@@ -303,3 +303,69 @@ You can use try to learn some useful features like :
 4. Adding multiple game scenes
 
 and much more !
+
+#### Step 7 Adding some textures
+
+Using rectangles to represent entities is fun, but it's better when they have different textures to differentiate them easier.
+
+Create `assets/textures/` subdirectories in the `ressources/` directory.
+
+We add our images here so when we simply specify the name of the image, FXGL will automatically search for it in this folder.
+
+**Replace the player's texture by your image by modifying the `.view()` method**
+
+You can do it for your ennemies too.
+
+#### Step 8 Adding components to an entity
+
+Any game object that you can think of (player, coin, power-up, wall, etc...) is an entity.
+By itself an entity is nothing but a generic object.
+Components allow us to shape that entity to be anything we like.
+
+To add components to an entity, we can either call the `with()` method when we create the entity or call the `addComponent()` method directly on the entity.
+
+We can also remove a component by calling the `removeComponent()` with the component class you want to remove as parameters.
+
+**Add a `ProjectileComponent` to your player entity. One for each direction when we press the corresponding input.**
+
+ProjectileComponent does just like you think. It rotates your entity and make it move automatically in a direction.
+To set the direction, we pass a `Point2D(x, y)` as parameters. The second parameter is to specify the speed in px/sec *(I guess)*
+
+
+**Here, you can find other components you can add to entities : https://www.javadoc.io/doc/com.github.almasb/fxgl/0.5.0/com/almasb/fxgl/extra/entity/components/package-summary.html !**
+
+
+#### Step 9 Adding collision between entities
+
+There is a few steps before adding a collision system to our application.
+
+First, we will create an enum to make this step easier.
+
+**Create an enum `EntityType`**
+
+When creating an entity, add the `.type()` method with an EntityType as parameter.
+
+Then, change the `view()` method to `viewWithBBox()`. This will generate a bounding box that match the size of te entity.
+
+Finally, add a `CollidableComponent` to the entity.
+
+
+Now it's time to add some physics to our application.
+
+First we need to override the `initPhysics()` method in our Application.
+
+Call the `onCollisionBegin()` method in it.
+
+```Java
+onCollisionBegin(EntityType.BOSS, EntityType.BASE, (boss2, base13) -> {
+    Do_something(boss2, base13);
+});
+```
+
+### To go even further
+
+That's basically it for tis workshop. I mean... Yeah, here's the link to the FXGL Documentation if you want to do even more things.
+
+https://github.com/AlmasB/FXGL/wiki/FXGL-11
+
+
