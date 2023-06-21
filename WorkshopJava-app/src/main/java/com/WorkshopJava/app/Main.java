@@ -1,6 +1,7 @@
 package com.WorkshopJava.app;
 
-public class App {
+public class Main {
     public static void main(String[] args) {
+        App.main(args);
     }
 }

@@ -188,6 +188,13 @@ mvn package
 ```
 This command will create a `.jar` file (an executable java file)
 
+We can also use the
+
+```bash
+mvn exec:java
+```
+To execute the program.
+
 Or you can simply run your program from IntelliJ Idea IDE.
 
 #### Step 2 Adding an entity
