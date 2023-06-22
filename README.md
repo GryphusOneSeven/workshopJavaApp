@@ -367,4 +367,6 @@ That's basically it for this workshop. I mean... Yeah...
 
 Feel free to customize your application or even check other features of FXGL at https://github.com/AlmasB/FXGL/wiki/FXGL-11 !
 
+You can add some cool features such as **Adding audio and video**, **Adding sprite animations**, **Adding time-specific actions**, **Build a level using Tiled map editor** and much more !
+
 
