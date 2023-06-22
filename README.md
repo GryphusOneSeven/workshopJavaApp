@@ -174,6 +174,10 @@ In Java, we use the `@Override` keyword to override an inherited method.
     public void Do_something(int nb) { ... }
 ```
 
+**Change the settings so that the window's dimensions are set to 800x600 and the title is `WorkshopJava`**
+
+In you app's main method, call the `launch` method with the main's arguments a parameters. 
+
 Now we can launch the application :
 
 ```bash
@@ -188,7 +192,7 @@ mvn package
 ```
 This command will create a `.jar` file (an executable java file)
 
-We can also use the
+We can also use 
 
 ```bash
 mvn exec:java
@@ -198,8 +202,6 @@ To execute the program.
 Or you can simply run your program from IntelliJ Idea IDE.
 
 #### Step 2 Adding an entity
-
-In `Init settings` set the width to 800, the height to 600 and the title to `WorkshopJava`
 
 In your App class, add an `Entity` named `player`;
 
@@ -222,7 +224,7 @@ Now if we run our program we can see our entity as a blue rectangle.
 
 #### Step 3 Adding inputs
 
-To add input we must override the `initOutput` method
+To add input we must override the `initInput` method
 
 To add an input, we can use the `FXGL.onKeyDown` method
 
@@ -241,13 +243,13 @@ Now that we have a player, we also need an enemy.
 
 **Add an ennemy entity with a red rectangle**
 
-#### Step 4.1 Adding a factory (Optional)
+#### Step 4.1 Adding a factory
 
 To create multiple enemies, we can create a factory.
 
 **Create a new java class named `Factory` that implements the `EntityFactory` interface**
 
-In this class, add a `newEnemy` method that takes `Spawndata` as parameters and returns an `Entity`.
+In this class, add a `newEnemy` method that takes `SpawnData` as parameters and returns an `Entity`.
 
 Add `@Spawns("enemy")` to make it easier to create an entity.
 
@@ -264,7 +266,8 @@ replace `buildAndAttach` by `build` or else the entity won't show when we spawn 
 ```
 
 Now, to actually spawn an enemy, we can use the `FXGL.spawn()` method.
-Give it `"enemy"` as first argument and his `x` and `y` pos for second and third args.
+
+Give it the entity name as string as first argument and his `x` and `y` pos for second and third args.
 
 
 #### Step 5 Add a UI
